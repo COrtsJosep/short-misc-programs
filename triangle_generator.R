@@ -18,3 +18,25 @@ give_me_a_triangle <- function(){
 }
 
 give_me_a_triangle()
+
+
+##########
+
+
+# Generates a gif with 10 triangle plots
+library(magick)
+dir.create(paste(getwd(), "/triangles", sep = ""))
+
+for (i in 0:9){
+  pathstr <- paste(getwd(), "/triangles/triangle", toString(i), ".png", sep = "")
+  png(pathstr, width = 600)
+  give_me_a_triangle()
+  dev.off()
+}
+
+imgs <- list.files(paste(getwd(), "/triangles", sep = ""), full.names = TRUE)
+img_list <- lapply(imgs, image_read)
+img_joined <- image_join(img_list)
+img_animated <- image_animate(img_joined, fps = 2)
+image_write(image = img_animated,
+            path = paste(getwd(), "/triangles/trianglesgif.gif", sep = ""))
