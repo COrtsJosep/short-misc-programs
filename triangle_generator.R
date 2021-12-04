@@ -1,3 +1,4 @@
+# Plots a randomly generated triangle.
 give_me_a_triangle <- function(){
   angles <- sort(runif(3), decreasing = TRUE)
   angles <- angles*(pi/sum(angles))
@@ -17,4 +18,3 @@ give_me_a_triangle <- function(){
 }
 
 give_me_a_triangle()
-
