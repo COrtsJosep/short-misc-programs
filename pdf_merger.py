@@ -1,12 +1,15 @@
 ## Program to merge some pdfs.
 import glob
+import os
 from PyPDF2 import PdfFileMerger
 
+wd = os.getcwd()
+os.chdir(wd)
+
 merger = PdfFileMerger()
-directory = '.../desktop/folder'
-for i in glob.glob(directory, '*.pdf'):
+for i in glob.glob('*.pdf'):
     ## alternatively: for i in ['pdf1_path.pdf', 'pdf2_path.pdf' ...]
     merger.append(i)
  
-merger.write(directory + '/output_name.pdf')
+merger.write('output_name.pdf')
 merger.close()
